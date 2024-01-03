@@ -4,13 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-// import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-// export function HttpLoaderFactory(http: HttpClient) {
-//   return new TranslateHttpLoader(http);
-// }
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,14 +21,17 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
     // TranslateModule.forRoot({
-    //   loader: {
-    //     provide: TranslateLoader,
-    //     useFactory: HttpLoaderFactory,
-    //     deps: [HttpClient]
-    //   }
+    //   defaultLanguage: 'en'
     // })
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports: [],
   providers: [],

@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShipmentService } from 'src/app/shipment.service';
 import { Location } from '@angular/common'
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -11,8 +12,9 @@ import { Location } from '@angular/common'
 })
 export class ResultComponent {
   allRes: any;
-  constructor(private location: Location, private shipmentService: ShipmentService, private router: Router) {
-
+  constructor(private location: Location, private shipmentService: ShipmentService, private router: Router, translate: TranslateService) {
+    translate.setDefaultLang('en');
+    translate.use('en');
   }
   res: any = { Shipments: {} }
   check: any = {

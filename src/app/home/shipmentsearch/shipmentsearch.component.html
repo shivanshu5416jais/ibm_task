@@ -1,18 +1,18 @@
 <div class="bg-light">
-    <h2 class=" centerText">What do you want to do?</h2>
+    <h2 class=" centerText">{{'whatdoyouwanttodo'|translate}}</h2>
     <div class="center card">
         <form class="form" (submit)="onSearch(searchForm)" (reset)="onReset(searchForm)" #searchForm="ngForm">
-            <h2 class=" centerText">Shipment Search</h2>
+            <h2 class=" centerText">{{'shipmentsearch'|translate}}</h2>
             <p *ngIf="showError">No Results Found! Please use other search criteria</p>
-            <input type="text" placeholder="Order #" name="OrderNo" ngModel>
-            <input type="text" placeholder="Shipment #" name="ShipmentNo" ngModel>
-            <input type="text" placeholder="First Name #" name="FirstName" ngModel>
-            <input type="text" placeholder="Last Name #" name="LastName" ngModel>
-            <input type="text" placeholder="Email ID #" name="EMailID" ngModel>
-            <input type="text" placeholder="Phone Number #" name="DayPhone" ngModel>
+            <input type="text" [placeholder]="'order#'|translate" name="OrderNo" ngModel>
+            <input type="text" [placeholder]="'shipment#'|translate" name="ShipmentNo" ngModel>
+            <input type="text" [placeholder]="'sirstname'|translate" name="FirstName" ngModel>
+            <input type="text" [placeholder]="'lastname'|translate" name="LastName" ngModel>
+            <input type="text" [placeholder]="'emailid'|translate" name="EMailID" ngModel>
+            <input type="text" [placeholder]="'phonenumber'|translate" name="DayPhone" ngModel>
             <div class="endAlign">
-                <button class="reset btn btn-outline-primary" type="reset">Reset</button>
-                <button type="submit" class="search btn btn-primary">Search</button>
+                <button class="reset btn btn-outline-primary" type="reset">{{'reset'|translate}}</button>
+                <button type="submit" class="search btn btn-primary">{{'search'|translate}}</button>
             </div>
         </form>
     </div>

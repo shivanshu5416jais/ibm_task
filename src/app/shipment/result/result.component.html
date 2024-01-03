@@ -5,14 +5,14 @@
         <div class="flexcenter border-bottom pb-4">
             <div class="flexstart"><button (click)="goback()" class="btn btn-outline-primary"><img
                         src="assets/icons/lessthan.svg"></button>
-                <h3 class="m-2 ">Shipment search results</h3>
+                <h3 class="m-2 ">{{'shipmentsearchresult'|translate}}</h3>
             </div>
-            <div><button class="btn btn-outline-primary" (click)="goback()">Close</button>
+            <div><button class="btn btn-outline-primary" (click)="goback()">{{'close'|translate}}</button>
             </div>
         </div>
         <div class="flexcenter pt-3">
             <div>
-                <h4>{{res.Shipments.TotalNumberOfRecords}} results</h4>
+                <h4>{{res.Shipments.TotalNumberOfRecords}} {{'results'|translate}}</h4>
             </div>
             <div><button class="btn btn-outline-primary" (click)="open()"><img src="assets/icons/filter.svg"></button>
             </div>
@@ -27,26 +27,26 @@
             <div class="row align-items-start px-4 py-3">
                 <div class="col-sm-4 col-6 mt-2">
                     <h6>{{shipment.OrderNo}}</h6>
-                    <p>{{shipment.ShipmentLines.TotalNumberOfRecords}} Products
+                    <p>{{shipment.ShipmentLines.TotalNumberOfRecords}} {{'products'|translate}}
 
                     </p>
-                    <p *ngIf="shipment.DeliveryMethod=='SHP'">Carrier: {{shipment.ScacAndService}}</p>
+                    <p *ngIf="shipment.DeliveryMethod=='SHP'">{{'carrier'|translate}}: {{shipment.ScacAndService}}</p>
 
-                    <p>Shipment # <span class="link-primary"
+                    <p>{{'shipment'|translate}} # <span class="link-primary"
                             (click)="gotodetail(shipment)">{{shipment.ShipmentNo}}</span></p>
                 </div>
                 <div class="col-sm-4 col-6  mt-2">
                     <p>{{shipment.Status}}</p>
 
-                    <p *ngIf="shipment.DeliveryMethod=='SHP'">Expected Shipment date:
+                    <p *ngIf="shipment.DeliveryMethod=='SHP'">{{'expectedshipmentdate'|translate}}:
                         {{shipment.ExpectedShipmentDate}}
                     </p>
-                    <p *ngIf="shipment.DeliveryMethod=='PICK'">Expected Pickup date:
+                    <p *ngIf="shipment.DeliveryMethod=='PICK'">{{'expectedpickupdate'|translate}}:
                         {{shipment.ExpectedShipmentDate}}
                     </p>
                 </div>
                 <div class="col-sm-4 col-6  mt-2">
-                    <p>Customer Info</p>
+                    <p>{{'customerinfo'|translate}}</p>
                     <p>{{shipment.BillToAddress.FirstName + " "+ shipment.BillToAddress.LastName}}
 
                     </p>

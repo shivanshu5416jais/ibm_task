@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ShipmentService } from 'src/app/shipment.service';
 import { NgForm } from '@angular/forms'
 import { ResultComponent } from 'src/app/shipment/result/result.component';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-shipmentsearch',
   templateUrl: './shipmentsearch.component.html',
@@ -11,8 +12,11 @@ import { ResultComponent } from 'src/app/shipment/result/result.component';
 export class ShipmentsearchComponent {
 
 
-  constructor(private router: Router, private shipmentService: ShipmentService) {
+  constructor(private router: Router, private shipmentService: ShipmentService, translate: TranslateService) {
+    translate.setDefaultLang('en');
 
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use('en');
   }
   showError: boolean = false;
   //reset form
