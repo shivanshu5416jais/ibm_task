@@ -24,20 +24,25 @@ export class DetailComponent {
 
   }
   ngOnInit() {
-    this.shipmentService.getDetail().subscribe(res => {
+
+    this.shipmentService.getDetail(this.shipment.DeliveryMethod).subscribe(res => {
       console.log(res);
       this.detail = res.Shipment;
       // this.currentShipmentDetail = this.detail.filter((x: any) => x.OrderNo == this.shipment.OrderNo)
       // console.log(this.currentShipmentDetail);
 
     })
+
   }
   goBack() {
-    this.router.navigate(['/shipment/result'], {
-      state: {
-        shipment: this.res
-      }
-    })
+    if (this.res.Shipments.TotalNumberOfRecords != 1)
+      this.router.navigate(['/shipment/result'], {
+        state: {
+          shipment: this.res
+        }
+      })
+    else
+      this.router.navigate(['/home'])
   }
   goHome() {
     this.router.navigate(['/home'])

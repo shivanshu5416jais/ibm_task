@@ -11,7 +11,10 @@ export class ShipmentService {
   getResult() {
     return this.http.get<any>('assets/result.json')
   }
-  getDetail() {
-    return this.http.get<any>('assets/detail.json')
+  getDetail(DM: any) {
+    if (DM == "PICK")
+      return this.http.get<any>('assets/detailPick.json')
+    else
+      return this.http.get<any>('assets/detailShp.json')
   }
 }

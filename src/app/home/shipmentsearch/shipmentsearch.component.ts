@@ -37,7 +37,7 @@ export class ShipmentsearchComponent {
 
       if (res.Shipments.TotalNumberOfRecords == 1)
         this.router.navigate(['/shipment/detail'], {
-          state: { shipment: res.Shipments.Shipment }
+          state: { shipment: res }
         })
       else if (res.Shipments.TotalNumberOfRecords)
         this.router.navigate(['/shipment/result'], {
