@@ -1,0 +1,2 @@
+ checkList: any = ['Ready for Backroom Pick', 'Backroom Pick In Progress', 'Ready for Customer Pickup', 'Packing In Progress', 'Packed', 'Shipped', 'Cancelled'];
+ 

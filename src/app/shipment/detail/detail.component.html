@@ -1,0 +1,151 @@
+<div class="content">
+
+    <div class="flexcenter">
+        <div class="flexstart"><button><img class="icon1" (click)="goBack()" src="assets/icons/lessthan.svg"></button>
+            <div>
+                <h1>Shipment Summary</h1>
+                <p>{{detail.OrderNo}}</p>
+            </div>
+
+        </div>
+        <div><button (click)="goHome()">Close</button></div>
+    </div>
+
+    <!-- <div class="flexcenter">
+        <div>{{res.Shipments.TotalNumberOfRecords}} results</div>
+        <div><button><img src="assets/icons/filter.svg"></button></div>
+    </div> -->
+
+
+</div>
+<div class=" content mt-3 bg-light">
+    <div class="card bg-light" *ngIf="!showDetail">
+        <div class="row">
+            <p>{{detail.Status}}</p>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Shipment number</p>
+                <p>{{detail.ShipmentNo}}</p>
+            </div>
+            <div class="col">
+                <p>Expected ship date</p>
+                <p>{{detail.ExpectedShipmentDate}}</p>
+            </div>
+            <div id="shipto" class="col">
+                <p>Ship to</p>
+                <p>{{detail.ToAddress.FirstName + " "+detail.ToAddress.LastName + ", " +detail.ToAddress.City+",
+                    "+detail.ToAddress.ZipCode}}</p>
+            </div>
+        </div>
+        <div class="d-flex flex-row-reverse"><button type="button m-0 p-0" class="btn btn-link"
+                style="vertical-align:top" (click)="showDetail=!showDetail">Show Info</button></div>
+    </div>
+    <div class="card bg-light" *ngIf="showDetail">
+        <div class="row">
+            <p>{{detail.Status}}</p>
+
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p>Shipment number</p>
+                <p>{{detail.ShipmentNo}}</p>
+                <br>
+                <p>Carrier</p>
+                <p>{{detail.ScacAndService}}</p>
+                <br>
+                <p>Assigned To</p>
+                <p>{{detail.AssignedToUserId}}</p>
+                <br>
+                <p>Ship to</p>
+                <p>{{detail.ToAddress.FirstName + " "+detail.ToAddress.LastName
+                    }}</p>
+                <p>{{detail.ToAddress.AddressLine1}}</p>
+                <p>{{detail.ToAddress.City +", "+detail.ToAddress.State+", "+detail.ToAddress.ZipCode}}</p>
+                <p>{{detail.ToAddress.Country}}</p>
+            </div>
+            <div class="col">
+                <p>Expected ship date</p>
+                <p>{{detail.ExpectedShipmentDate}}</p>
+                <br>
+                <p>Customer Info</p>
+                <p>{{detail.BillToAddress.FirstName + " "+ detail.BillToAddress.LastName}}
+
+                </p>
+                <p>{{detail.BillToAddress.DayPhone}}</p>
+                <p> {{detail.BillToAddress.EMailID}}</p>
+                <br>
+                <p>Bill to</p>
+                <p>{{detail.BillToAddress.FirstName + " "+detail.BillToAddress.LastName
+                    }}</p>
+                <p>{{detail.BillToAddress.AddressLine1}}</p>
+                <p>{{detail.BillToAddress.City +", "+detail.BillToAddress.State+", "+detail.BillToAddress.ZipCode}}</p>
+                <p>{{detail.BillToAddress.Country}}</p>
+            </div>
+
+        </div>
+        <!-- <div class="row">
+            <div class="col">
+                <p>Carrier</p>
+                <p>{{detail.ScacAndService}}</p>
+                <br>
+                <p>Assigned To</p>
+                <p>{{detail.AssignedToUserId}}</p>
+            </div>
+            <div class="col">
+                <p>Customer Info</p>
+                <p>{{detail.BillToAddress.FirstName + " "+ detail.BillToAddress.LastName}}
+
+                </p>
+                <p>{{detail.BillToAddress.DayPhone}}</p>
+                <p> {{detail.BillToAddress.EMailID}}</p>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Ship to</p>
+                <p>{{detail.ToAddress.FirstName + " "+detail.ToAddress.LastName
+                    }}</p>
+                <p>{{detail.ToAddress.AddressLine1}}</p>
+                <p>{{detail.ToAddress.City +", "+detail.ToAddress.State+", "+detail.ToAddress.ZipCode}}</p>
+                <p>{{detail.ToAddress.Country}}</p>
+            </div>
+            <div class="col">
+                <p>Bill to</p>
+                <p>{{detail.BillToAddress.FirstName + " "+detail.BillToAddress.LastName
+                    }}</p>
+                <p>{{detail.BillToAddress.AddressLine1}}</p>
+                <p>{{detail.BillToAddress.City +", "+detail.BillToAddress.State+", "+detail.BillToAddress.ZipCode}}</p>
+                <p>{{detail.BillToAddress.Country}}</p>
+            </div>
+
+        </div> -->
+
+        <div class="d-flex flex-row-reverse"><button type="button m-0 p-0" class="btn btn-link"
+                style="vertical-align:top" (click)="showDetail=!showDetail">Hide Info</button></div>
+    </div>
+
+</div>
+<div class="content mt-3">
+    <div class="m-2">
+        <span class="border-bottom p-2 text-primary">Products ({{detail.ShipmentLines.TotalNumberOfRecords}})</span>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 p-3 border-top" *ngFor="let product of detail.ShipmentLines.ShipmentLine">
+            <div class="row">
+                <div class="col-4"><img class="img-fluid" style="max-width: 100%;  height: auto;"
+                        [src]=product.OrderLine.ItemDetails.ImageUrl alt="">
+                </div>
+                <div class="col-8">
+                    <p class="text-primary">{{product.OrderLine.ItemDetails.Description}}</p>
+                    <p>Product ID: {{product.OrderLine.ItemDetails.ItemID}}</p>
+                    <p>Quantity:{{product.Quantity}} {{product.OrderLine.ItemDetails.DisplayUnitOfMeasure}} </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

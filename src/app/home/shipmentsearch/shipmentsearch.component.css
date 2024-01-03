@@ -1,0 +1,35 @@
+.center {
+    margin: auto;
+    width: 50%;
+
+    padding: 10px;
+}
+
+.centerText {
+    text-align: center
+}
+
+input {
+    display: block;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.endAlign {
+    margin-right: 10%;
+    display: flex;
+    justify-content: end;
+}
+
+.reset {
+    margin-right: 2%;
+
+}
+
+@media screen and (max-width: 480px) {
+    .center {
+
+        width: 100%;
+
+    }
+}

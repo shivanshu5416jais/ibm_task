@@ -1,0 +1,121 @@
+<div class="content">
+
+    <div class="flexcenter">
+        <div class="flexstart"><button><img src="assets/icons/lessthan.svg" (click)="goback()"></button>
+            <h1>Shipment search results</h1>
+        </div>
+        <div><button (click)="goback()">Close</button></div>
+    </div>
+    <div class="flexcenter">
+        <div>
+            <h4>{{res.Shipments.TotalNumberOfRecords}} results</h4>
+        </div>
+        <div><button (click)="open()"><img src="assets/icons/filter.svg"></button></div>
+    </div>
+
+
+</div>
+<div class="content">
+
+    <div class=" card " *ngFor="let shipment of res.Shipments.Shipment">
+        <div class="row align-items-start px-4 py-3">
+            <div class="col-sm-4 col-6">
+                <h6>{{shipment.OrderNo}}</h6>
+                <p>{{shipment.ShipmentLines.TotalNumberOfRecords}} Products
+
+                </p>
+                <p>Carrier: {{shipment.ScacAndService}}</p>
+
+                <p>Shipment # <button type="button m-0 p-0" class="btn btn-link" style="vertical-align:top"
+                        (click)="gotodetail(shipment)">{{shipment.ShipmentNo}}</button></p>
+            </div>
+            <div class="col-sm-4 col-6">
+                <p>{{shipment.Status}}</p>
+                <p *ngIf="shipment.DeliveryMethod=='SHP'">Assigned to: {{shipment.AssignedToUserId}}
+
+                </p>
+                <p *ngIf="shipment.DeliveryMethod=='SHP'">Expected Shipment date: {{shipment.ExpectedShipmentDate}}</p>
+                <p *ngIf="shipment.DeliveryMethod=='PICK'">Expected Pickup date: {{shipment.ExpectedShipmentDate}}</p>
+            </div>
+            <div class="col-sm-4 col-6">
+                <p>Customer Info</p>
+                <p>{{shipment.BillToAddress.FirstName + " "+ shipment.BillToAddress.LastName}}
+
+                </p>
+                <p>{{shipment.BillToAddress.DayPhone}}</p>
+                <p> {{shipment.BillToAddress.EMailID}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Refine</h4>
+                <button type="button" class="btn-close" (click)="close()" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <div class="form-check" *ngFor="let item of checkList">
+                    <input class="form-check-input" type="checkbox" value="Backroom Pick In Progress"
+                        id="Backroom Pick In Progress" [(ngModel)]="check[item]" (change)="checkChange(item)">
+                    <label class="form-check-label" for=item>
+                        {{item}}
+                    </label>
+                </div>
+                <!-- <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="reayforcustomerpickup"
+                        id="reayforcustomerpickup">
+                    <label class="form-check-label" for="reayforcustomerpickup">
+                        Ready for Customer Pickup
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="readyforpacking" id="readyforpacking">
+                    <label class="form-check-label" for="readyforpacking">
+                        Ready for Packing
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="packinginprogress" id="packinginprogress">
+                    <label class="form-check-label" for="packinginprogress">
+                        Packing In Progress
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="packed" id="packed">
+                    <label class="form-check-label" for="packed">
+                        Packed
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="shipped" id="shipped">
+                    <label class="form-check-label" for="shipped">
+                        Shipped
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="cancelled" id="cancelled">
+                    <label class="form-check-label" for="cancelled">
+                        Cancelled
+                    </label>
+                </div> -->
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary reset" (click)="reset()">Reset</button>
+                <button type="button" class="btn btn-primary" (click)="apply()">Apply</button>
+            </div>
+
+        </div>
+    </div>
+</div>

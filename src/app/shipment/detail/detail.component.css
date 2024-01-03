@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+}
+
+
+.icon1 {
+    width: 20px;
+    height: 10px;
+    margin: 10px;
+}
+
+button {
+
+    height: 32px;
+}
+
+.content {
+    width: 90%;
+    margin: auto;
+    /* position: -webkit-sticky;
+    /* Safari */
+    /* position: fixed;
+    z-index: 10;
+    background: inherit; */
+
+}
+
+.flexcenter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flexstart {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.bottomcontent {}
+
+@media screen and (max-width: 480px) {
+    #shipto {
+        visibility: hidden;
+        clear: both;
+        float: left;
+        margin: 10px auto 5px 20px;
+        width: 28%;
+        display: none;
+    }
+}
