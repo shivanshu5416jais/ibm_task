@@ -52,7 +52,7 @@ export class ResultComponent {
   }
   gotodetail(shipment: any) {
     this.router.navigate(['/shipment/detail'], {
-      state: { clickedShipment: shipment, shipment: this.res }
+      state: { clickedShipment: shipment, shipment: this.allRes }
     })
   }
   open() {

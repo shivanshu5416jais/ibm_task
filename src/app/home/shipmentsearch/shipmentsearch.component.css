@@ -1,22 +1,23 @@
 .center {
     margin: auto;
     width: 50%;
-
+    height: auto;
     padding: 10px;
 }
 
 .centerText {
+    padding: 10px;
     text-align: center
 }
 
 input {
     display: block;
-    width: 80%;
+    width: 90%;
     margin: 20px auto;
 }
 
 .endAlign {
-    margin-right: 10%;
+    margin-right: 5%;
     display: flex;
     justify-content: end;
 }

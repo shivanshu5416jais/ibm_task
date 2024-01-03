@@ -1,54 +1,66 @@
-<div class="content">
+<div class="bg-light">
+    <div class="content card p-3">
 
-    <div class="flexcenter">
-        <div class="flexstart"><button><img src="assets/icons/lessthan.svg" (click)="goback()"></button>
-            <h1>Shipment search results</h1>
+
+        <div class="flexcenter border-bottom pb-4">
+            <div class="flexstart"><button class="btn btn-outline-primary"><img src="assets/icons/lessthan.svg"
+                        (click)="goback()"></button>
+                <h3 class="m-2 ">Shipment search results</h3>
+            </div>
+            <div><button class="btn btn-outline-primary" (click)="goback()">Close</button>
+                <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
+            </div>
         </div>
-        <div><button (click)="goback()">Close</button></div>
-    </div>
-    <div class="flexcenter">
-        <div>
-            <h4>{{res.Shipments.TotalNumberOfRecords}} results</h4>
+        <div class="flexcenter pt-3">
+            <div>
+                <h4>{{res.Shipments.TotalNumberOfRecords}} results</h4>
+            </div>
+            <div><button class="btn btn-outline-primary" (click)="open()"><img src="assets/icons/filter.svg"></button>
+            </div>
         </div>
-        <div><button (click)="open()"><img src="assets/icons/filter.svg"></button></div>
+
+
+
+
+
+
+        <div class="border-bottom" *ngFor="let shipment of res.Shipments.Shipment">
+            <div class="row align-items-start px-4 py-3">
+                <div class="col-sm-4 col-6 mt-2">
+                    <h6>{{shipment.OrderNo}}</h6>
+                    <p>{{shipment.ShipmentLines.TotalNumberOfRecords}} Products
+
+                    </p>
+                    <p>Carrier: {{shipment.ScacAndService}}</p>
+
+                    <p>Shipment # <span class="link-primary"
+                            (click)="gotodetail(shipment)">{{shipment.ShipmentNo}}</span></p>
+                </div>
+                <div class="col-sm-4 col-6  mt-2">
+                    <p>{{shipment.Status}}</p>
+                    <p *ngIf="shipment.DeliveryMethod=='SHP'">Assigned to: {{shipment.AssignedToUserId}}
+
+                    </p>
+                    <p *ngIf="shipment.DeliveryMethod=='SHP'">Expected Shipment date:
+                        {{shipment.ExpectedShipmentDate}}
+                    </p>
+                    <p *ngIf="shipment.DeliveryMethod=='PICK'">Expected Pickup date:
+                        {{shipment.ExpectedShipmentDate}}
+                    </p>
+                </div>
+                <div class="col-sm-4 col-6  mt-2">
+                    <p>Customer Info</p>
+                    <p>{{shipment.BillToAddress.FirstName + " "+ shipment.BillToAddress.LastName}}
+
+                    </p>
+                    <p>{{shipment.BillToAddress.DayPhone}}</p>
+                    <p> {{shipment.BillToAddress.EMailID}}</p>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-
 </div>
-<div class="content">
-
-    <div class=" card " *ngFor="let shipment of res.Shipments.Shipment">
-        <div class="row align-items-start px-4 py-3">
-            <div class="col-sm-4 col-6">
-                <h6>{{shipment.OrderNo}}</h6>
-                <p>{{shipment.ShipmentLines.TotalNumberOfRecords}} Products
-
-                </p>
-                <p>Carrier: {{shipment.ScacAndService}}</p>
-
-                <p>Shipment # <button type="button m-0 p-0" class="btn btn-link" style="vertical-align:top"
-                        (click)="gotodetail(shipment)">{{shipment.ShipmentNo}}</button></p>
-            </div>
-            <div class="col-sm-4 col-6">
-                <p>{{shipment.Status}}</p>
-                <p *ngIf="shipment.DeliveryMethod=='SHP'">Assigned to: {{shipment.AssignedToUserId}}
-
-                </p>
-                <p *ngIf="shipment.DeliveryMethod=='SHP'">Expected Shipment date: {{shipment.ExpectedShipmentDate}}</p>
-                <p *ngIf="shipment.DeliveryMethod=='PICK'">Expected Pickup date: {{shipment.ExpectedShipmentDate}}</p>
-            </div>
-            <div class="col-sm-4 col-6">
-                <p>Customer Info</p>
-                <p>{{shipment.BillToAddress.FirstName + " "+ shipment.BillToAddress.LastName}}
-
-                </p>
-                <p>{{shipment.BillToAddress.DayPhone}}</p>
-                <p> {{shipment.BillToAddress.EMailID}}</p>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <!-- The Modal -->
 <div class="modal" id="myModal">
