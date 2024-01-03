@@ -24,16 +24,14 @@ export class DetailComponent {
 
   }
   ngOnInit() {
-
+    //passing delivery method to get diffrent jsons 
     this.shipmentService.getDetail(this.shipment.DeliveryMethod).subscribe(res => {
-      console.log(res);
       this.detail = res.Shipment;
-      // this.currentShipmentDetail = this.detail.filter((x: any) => x.OrderNo == this.shipment.OrderNo)
-      // console.log(this.currentShipmentDetail);
 
     })
 
   }
+  //navigate to home if there is only 1 search record else to result screen
   goBack() {
     if (this.res.Shipments.TotalNumberOfRecords != 1)
       this.router.navigate(['/shipment/result'], {

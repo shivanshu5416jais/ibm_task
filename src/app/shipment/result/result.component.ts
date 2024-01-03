@@ -38,6 +38,7 @@ export class ResultComponent {
     }
 
   }
+  //loading 10 data in UI a first 
   @HostListener("window:scroll", [])
   onScroll(): void {
     console.log("ssssss");
@@ -50,6 +51,7 @@ export class ResultComponent {
 
     }
   }
+  //navigating to detail
   gotodetail(shipment: any) {
     this.router.navigate(['/shipment/detail'], {
       state: { clickedShipment: shipment, shipment: this.allRes }
@@ -67,6 +69,7 @@ export class ResultComponent {
   checkChange(event: any) {
     // this.checked.push(event)
   }
+  //resetting checkboxes model
   reset() {
     this.check = {
       'Ready for Backroom Pick': true,
@@ -81,14 +84,15 @@ export class ResultComponent {
     };
     // this.res = this.allRes
   }
+  //applying filters
   apply() {
-    console.log(this.check);
     this.res.Shipments.Shipment = this.allRes.Shipments.Shipment.filter((x: any) => this.check[x["Status"]])
     this.res.Shipments.TotalNumberOfRecords = this.res.Shipments.Shipment.length
     const m = document.getElementById('myModal')
     if (m != null)
       m.style.display = 'none'
   }
+  //cllose modal
   close() {
     const m = document.getElementById('myModal')
     if (m != null)

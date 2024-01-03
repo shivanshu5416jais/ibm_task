@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShipmentService } from 'src/app/shipment.service';
 import { NgForm } from '@angular/forms'
+import { ResultComponent } from 'src/app/shipment/result/result.component';
 @Component({
   selector: 'app-shipmentsearch',
   templateUrl: './shipmentsearch.component.html',
@@ -14,11 +15,12 @@ export class ShipmentsearchComponent {
 
   }
   showError: boolean = false;
+  //reset form
   onReset(form: any) {
     form.resetForm();
   }
   onSearch(form: NgForm) {
-    console.log(form);
+    // getting all result then applying filter logic
     this.shipmentService.getResult().subscribe(res => {
 
       Object.keys(form['value']).forEach(x => {
@@ -33,8 +35,7 @@ export class ShipmentsearchComponent {
           res.Shipments.TotalNumberOfRecords = res.Shipments.Shipment.length
         }
       })
-      // console.log(res);
-
+      //navigating to detail screen if 1 record else navigate to result screen
       if (res.Shipments.TotalNumberOfRecords == 1)
         this.router.navigate(['/shipment/detail'], {
           state: { shipment: res }
